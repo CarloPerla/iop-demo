@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IOP — Indice di Orientamento Politico</title>
+<style>
+:root{--bg:#0d1728;--panel:#17263d;--panel2:#20334f;--line:#344762;--text:#f4f7fb;--muted:#b5c4d8;--accent:#8db9ed;--accent2:#c5ddfa}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 50% -15%,#263d5e 0%,var(--bg) 58%);color:var(--text);font:16px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+.wrap{width:min(760px,calc(100% - 32px));margin:0 auto;padding:34px 0 48px}
+header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:30px}
+.brand{font-size:13px;letter-spacing:.17em;font-weight:750;color:var(--accent2)}
+.tag{font-size:11px;letter-spacing:.12em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 10px}
+main{background:rgba(23,38,61,.92);border:1px solid var(--line);border-radius:20px;padding:clamp(22px,5vw,40px);box-shadow:0 22px 70px #0005}
+.eyebrow{font-size:11px;letter-spacing:.16em;color:var(--accent);font-weight:700;text-transform:uppercase}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.12;letter-spacing:-.035em;margin:12px 0 16px}
+h2{font-size:clamp(23px,4vw,30px);line-height:1.2;margin:12px 0 22px}
+p{color:var(--muted);margin:0 0 18px}
+.rule{height:1px;background:var(--line);margin:24px 0}
+.meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin:22px 0}
+button{font:inherit;cursor:pointer}
+.primary{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:11px;padding:12px 19px;background:var(--accent);color:#102039;font-weight:750;transition:.15s}
+.primary:hover{background:var(--accent2);transform:translateY(-1px)}
+.secondary{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:10px;padding:10px 15px}
+.secondary:hover{background:var(--panel2)}
+.name{width:100%;background:#101d30;border:1px solid var(--line);border-radius:10px;padding:12px 13px;color:var(--text);font:inherit;margin:8px 0 20px}
+.progressline{height:6px;background:#31445f;border-radius:20px;overflow:hidden;margin:12px 0 26px}
+.progress{height:100%;background:var(--accent);width:0;transition:width .2s}
+.qtop{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:12px;letter-spacing:.08em}
+.options{display:grid;gap:10px;margin:22px 0 28px}
+.option{display:flex;gap:13px;align-items:flex-start;padding:14px;border:1px solid var(--line);border-radius:12px;background:#122139;cursor:pointer;transition:.15s}
+.option:hover{border-color:#789bc5;background:#1b2e49}
+.option.selected{border-color:var(--accent);background:#233a59;box-shadow:inset 0 0 0 1px var(--accent)}
+.option input{accent-color:#9dc5f3;margin-top:5px;flex:0 0 auto}
+.nav{display:flex;justify-content:space-between;gap:12px}
+.small{font-size:12px;color:var(--muted)}
+.resultbox{background:#101d30;border:1px solid var(--line);border-radius:14px;padding:20px;margin:20px 0}
+.score{font-size:42px;line-height:1.1;font-weight:750;letter-spacing:-.04em}
+.axislabels{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin:15px 0 7px}
+.axisbar{height:10px;background:#344761;border-radius:20px;overflow:hidden}
+.axisfill{height:100%;background:linear-gradient(90deg,#719bd0,#b8d7fa);border-radius:20px}
+.rank{display:flex;justify-content:space-between;gap:12px;margin:13px 0 6px;font-size:14px}
+.rankbar{height:6px;border-radius:20px;background:#344761;overflow:hidden}
+.rankbar span{display:block;height:100%;background:#8db9ed}
+.answerreview{padding:13px 0;border-bottom:1px solid var(--line)}
+.answerreview:last-child{border:0}
+.answerreview strong{display:block;color:var(--accent);font-size:11px;letter-spacing:.1em;margin-bottom:5px}
+footer{text-align:center;color:#8294ad;font-size:11px;letter-spacing:.1em;margin-top:22px}
+.hidden{display:none!important}
+@media(max-width:520px){.wrap{width:min(100% - 20px,760px);padding-top:18px}header{margin-bottom:18px}main{border-radius:15px}.nav button{flex:1}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="brand">IOP <span style="font-weight:400">/ INDICE DI ORIENTAMENTO POLITICO</span></div><div class="tag">DEMO · 4 DOMANDE</div></header>
+<main>
+<section id="welcome">
+ <div class="eyebrow">Una prova interattiva</div>
+ <h1>Scopri il tuo orientamento politico.</h1>
+ <p>Otto dimensioni politiche, una serie di domande e un profilo finale tutto da scoprire. Questa versione dimostrativa contiene quattro domande dell'asse Economia.</p>
+ <div class="rule"></div>
+ <label class="small" for="participant">Nome (facoltativo)</label>
+ <input id="participant" class="name" maxlength="40" placeholder="Come ti chiami?">
+ <div class="meta"><span>◷ Circa 2 minuti</span><span>·</span><span>4 domande</span><span>·</span><span>Risultati dimostrativi</span></div>
+ <button class="primary" id="start">Inizia il test <span aria-hidden="true">→</span></button>
+</section>
+<section id="quiz" class="hidden">
+ <div class="qtop"><span>IOP · ECONOMIA</span><span id="counter">DOMANDA 1 / 4</span></div>
+ <div class="progressline"><div class="progress" id="progress"></div></div>
+ <div class="eyebrow" id="qnum">DOMANDA 01</div>
+ <h2 id="question"></h2>
+ <div class="options" id="options"></div>
+ <div class="nav"><button class="secondary" id="back">← Indietro</button><button class="primary" id="next" disabled>Continua →</button></div>
+</section>
+<section id="results" class="hidden">
+ <div class="eyebrow">Test completato</div>
+ <h1 id="resultTitle">Il tuo risultato</h1>
+ <p>Questo è il tuo risultato dimostrativo sull'asse Economia, calcolato sulla base delle quattro risposte selezionate.</p>
+ <div class="resultbox">
+  <div class="eyebrow">Orientamento economico</div>
+  <div class="score" id="score">— / 100</div>
+  <div class="axislabels"><span>Socialismo</span><span>Centro</span><span>Capitalismo</span></div>
+  <div class="axisbar"><div class="axisfill" id="axisfill"></div></div>
+  <p class="small" style="margin:12px 0 0">0 = Socialismo · 50 = Centro · 100 = Capitalismo</p>
+ </div>
+ <div class="resultbox">
+  <div class="eyebrow">Ideologie associate alle tue risposte</div>
+  <div id="ideologies"></div>
+  <p class="small" style="margin:15px 0 0">Il conteggio è separato dal punteggio numerico. Le ideologie a pari punteggio massimo sono considerate prevalenti.</p>
+ </div>
+ <div class="eyebrow">Le tue risposte</div>
+ <div id="review"></div>
+ <div class="rule"></div>
+ <p>Nel test definitivo saranno presenti tutti gli otto assi, le ideologie prevalenti, il partito italiano, il personaggio di riferimento, lo Stato simbolico e un'analisi personalizzata.</p>
+ <button class="primary" id="restart">↻ Ripeti la demo</button>
+</section>
+</main>
+<footer>IOP · DEMO INTERATTIVA · VERSIONE DI PROVA</footer>
+</div>
+<script>
+const questions=[
+ {q:"Il mercato dovrebbe essere lasciato il più possibile libero di autoregolarsi, limitando l'intervento dello Stato?",a:[
+  ["Assolutamente sì. Più libero il mercato, più libere le persone.",100,["Destra"]],
+  ["In linea di massima, sì. Lo Stato dovrebbe intervenire solo per far rispettare le regole (concorrenza, monopoli).",80,["Centro-destra"]],
+  ["Dipende dal settore. Mercato e Stato dovrebbero intervenire ciascuno dove risulta più efficace.",50,["Centro"]],
+  ["Non molto. Lo Stato dovrebbe regolamentare attivamente il mercato per tutelare i lavoratori, i consumatori e l’interesse collettivo.",25,["Sinistra","Centro-sinistra"]],
+  ["Assolutamente no. L’economia dovrebbe essere guidata principalmente da obiettivi sociali e collettivi, anche attraverso un forte controllo pubblico della produzione.",5,["Estrema sinistra"]]
+ ]},
+ {q:"Le concessioni balneari dovrebbero avere una durata limitata nel tempo?",a:[
+  ["Sì, le concessioni dovrebbero durare pochi anni ed essere periodicamente riassegnate tramite gare pubbliche.",10,["Estrema sinistra","Sinistra"]],
+  ["Sì, ma dovrebbero avere una durata sufficientemente lunga da permettere agli imprenditori di recuperare gli investimenti.",30,["Centro-sinistra"]],
+  ["No, le concessioni dovrebbero poter essere rinnovate automaticamente se il concessionario rispetta le condizioni stabilite.",65,["Centro","Centro-destra"]],
+  ["No, chi ha investito nella propria attività dovrebbe poter mantenere la concessione senza limiti temporali rigidi.",90,["Destra","Estrema destra"]]
+ ]},
+ {q:"L'abitazione dovrebbe essere considerata un diritto fondamentale garantito dallo Stato?",a:[
+  ["Sì, nessuno dovrebbe possedere dieci appartamenti mentre delle famiglie dormono in auto. Lo Stato dovrebbe limitare il numero di immobili che una singola persona o società può possedere.",5,["Estrema sinistra"]],
+  ["Sì, ma lo Stato dovrebbe intervenire soprattutto per aiutare le famiglie in difficoltà ad accedere al mercato immobiliare.",20,["Sinistra","Centro-sinistra"]],
+  ["Sì, ma il modo migliore per garantire questo diritto è favorire la costruzione di nuove abitazioni e aumentare l'offerta.",50,["Centro"]],
+  ["No, l’abitazione è un bene importante, ma non un diritto che lo Stato deve garantire a tutti.",65,["Centro-destra"]],
+  ["No, la casa è una proprietà privata e il suo acquisto o affitto deve dipendere principalmente dalle possibilità economiche individuali.",95,["Destra","Estrema destra"]]
+ ]},
+ {q:"L'acqua potabile dovrebbe essere considerata un bene pubblico essenziale, sottratto il più possibile alle logiche del mercato e del profitto?",a:[
+  ["Sì, ormai anche l’acqua potabile è un prodotto di consumo imbottigliato ed etichettato (capitalismo brutto). Dovrebbe essere sempre gratuita.",5,["Estrema sinistra"]],
+  ["Sì, la gestione dovrebbe rimanere pubblica, con tariffe accessibili e senza finalità di profitto.",20,["Sinistra","Centro-sinistra"]],
+  ["La proprietà e il controllo delle risorse idriche dovrebbero essere pubblici, ma la gestione dei servizi potrebbe essere affidata anche a imprese private.",55,["Centro","Centro-destra"]],
+  ["No, anche l'acqua dovrebbe poter essere gestita da imprese private secondo normali criteri di mercato, sotto la supervisione dello Stato.",95,["Destra","Estrema destra"]]
+ ]}
+];
+let current=0,answers=[null,null,null,null];
+const $=id=>document.getElementById(id);
+function show(id){["welcome","quiz","results"].forEach(s=>$(s).classList.toggle("hidden",s!==id))}
+function renderQuestion(){
+ const q=questions[current];$("counter").textContent=`DOMANDA ${current+1} / ${questions.length}`;
+ $("qnum").textContent=`DOMANDA ${String(current+1).padStart(2,"0")}`;$("question").textContent=q.q;
+ $("progress").style.width=`${(current+1)/questions.length*100}%`;
+ $("options").innerHTML="";
+ q.a.forEach((a,i)=>{const label=document.createElement("label");label.className="option"+(answers[current]===i?" selected":"");
+ const radio=document.createElement("input");radio.type="radio";radio.name="answer";radio.value=i;radio.checked=answers[current]===i;
+ const span=document.createElement("span");span.textContent=a[0];label.append(radio,span);
+ label.addEventListener("click",()=>{answers[current]=i;renderQuestion()});$("options").append(label)});
+ $("back").style.visibility=current===0?"hidden":"visible";$("next").textContent=current===questions.length-1?"Concludi":"Continua →";$("next").disabled=answers[current]===null;
+}
+function finish(){
+ const avg=Math.round(answers.reduce((s,idx,i)=>s+questions[i].a[idx][1],0)/questions.length);
+ $("score").textContent=`${avg} / 100`;$("axisfill").style.width=avg+"%";
+ const name=$("participant").value.trim();$("resultTitle").textContent="Il tuo risultato"+(name?", "+name:"")+"!";
+ const counts={};answers.forEach((idx,i)=>questions[i].a[idx][2].forEach(tag=>counts[tag]=(counts[tag]||0)+1));
+ const sorted=Object.entries(counts).sort((a,b)=>b[1]-a[1]);const max=sorted[0]?.[1]||0;
+ $("ideologies").innerHTML="";
+ sorted.forEach(([name,n])=>{const row=document.createElement("div");row.className="rank";const left=document.createElement("span");left.textContent=name+(n===max?" · prevalente":"");const right=document.createElement("strong");right.textContent=`${n} ${n===1?"punto":"punti"}`;row.append(left,right);$("ideologies").append(row);const bar=document.createElement("div");bar.className="rankbar";const fill=document.createElement("span");fill.style.width=(n/max*100)+"%";bar.append(fill);$("ideologies").append(bar)});
+ $("review").innerHTML="";answers.forEach((idx,i)=>{const div=document.createElement("div");div.className="answerreview";const strong=document.createElement("strong");strong.textContent=`DOMANDA ${i+1}`;const p=document.createElement("p");p.style.margin="0";p.textContent=questions[i].a[idx][0];div.append(strong,p);$("review").append(div)});
+ show("results");
+}
+$("start").addEventListener("click",()=>{current=0;show("quiz");renderQuestion()});
+$("back").addEventListener("click",()=>{if(current>0){current--;renderQuestion()}});
+$("next").addEventListener("click",()=>{if(answers[current]===null)return;if(current<questions.length-1){current++;renderQuestion()}else finish()});
+$("restart").addEventListener("click",()=>{current=0;answers=[null,null,null,null];show("welcome")});
+</script>
+</body>
+</html>
