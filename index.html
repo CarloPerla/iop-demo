@@ -1,161 +1,935 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>IOP — Indice di Orientamento Politico</title>
-<style>
-:root{--bg:#0d1728;--panel:#17263d;--panel2:#20334f;--line:#344762;--text:#f4f7fb;--muted:#b5c4d8;--accent:#8db9ed;--accent2:#c5ddfa}
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at 50% -15%,#263d5e 0%,var(--bg) 58%);color:var(--text);font:16px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
-.wrap{width:min(760px,calc(100% - 32px));margin:0 auto;padding:34px 0 48px}
-header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:30px}
-.brand{font-size:13px;letter-spacing:.17em;font-weight:750;color:var(--accent2)}
-.tag{font-size:11px;letter-spacing:.12em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 10px}
-main{background:rgba(23,38,61,.92);border:1px solid var(--line);border-radius:20px;padding:clamp(22px,5vw,40px);box-shadow:0 22px 70px #0005}
-.eyebrow{font-size:11px;letter-spacing:.16em;color:var(--accent);font-weight:700;text-transform:uppercase}
-h1{font-size:clamp(30px,6vw,46px);line-height:1.12;letter-spacing:-.035em;margin:12px 0 16px}
-h2{font-size:clamp(23px,4vw,30px);line-height:1.2;margin:12px 0 22px}
-p{color:var(--muted);margin:0 0 18px}
-.rule{height:1px;background:var(--line);margin:24px 0}
-.meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin:22px 0}
-button{font:inherit;cursor:pointer}
-.primary{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:11px;padding:12px 19px;background:var(--accent);color:#102039;font-weight:750;transition:.15s}
-.primary:hover{background:var(--accent2);transform:translateY(-1px)}
-.secondary{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:10px;padding:10px 15px}
-.secondary:hover{background:var(--panel2)}
-.name{width:100%;background:#101d30;border:1px solid var(--line);border-radius:10px;padding:12px 13px;color:var(--text);font:inherit;margin:8px 0 20px}
-.progressline{height:6px;background:#31445f;border-radius:20px;overflow:hidden;margin:12px 0 26px}
-.progress{height:100%;background:var(--accent);width:0;transition:width .2s}
-.qtop{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:12px;letter-spacing:.08em}
-.options{display:grid;gap:10px;margin:22px 0 28px}
-.option{display:flex;gap:13px;align-items:flex-start;padding:14px;border:1px solid var(--line);border-radius:12px;background:#122139;cursor:pointer;transition:.15s}
-.option:hover{border-color:#789bc5;background:#1b2e49}
-.option.selected{border-color:var(--accent);background:#233a59;box-shadow:inset 0 0 0 1px var(--accent)}
-.option input{accent-color:#9dc5f3;margin-top:5px;flex:0 0 auto}
-.nav{display:flex;justify-content:space-between;gap:12px}
-.small{font-size:12px;color:var(--muted)}
-.resultbox{background:#101d30;border:1px solid var(--line);border-radius:14px;padding:20px;margin:20px 0}
-.score{font-size:42px;line-height:1.1;font-weight:750;letter-spacing:-.04em}
-.axislabels{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin:15px 0 7px}
-.axisbar{height:10px;background:#344761;border-radius:20px;overflow:hidden}
-.axisfill{height:100%;background:linear-gradient(90deg,#719bd0,#b8d7fa);border-radius:20px}
-.rank{display:flex;justify-content:space-between;gap:12px;margin:13px 0 6px;font-size:14px}
-.rankbar{height:6px;border-radius:20px;background:#344761;overflow:hidden}
-.rankbar span{display:block;height:100%;background:#8db9ed}
-.answerreview{padding:13px 0;border-bottom:1px solid var(--line)}
-.answerreview:last-child{border:0}
-.answerreview strong{display:block;color:var(--accent);font-size:11px;letter-spacing:.1em;margin-bottom:5px}
-footer{text-align:center;color:#8294ad;font-size:11px;letter-spacing:.1em;margin-top:22px}
-.hidden{display:none!important}
-@media(max-width:520px){.wrap{width:min(100% - 20px,760px);padding-top:18px}header{margin-bottom:18px}main{border-radius:15px}.nav button{flex:1}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test di Orientamento Politico</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary: #334155;
+            --secondary-hover: #475569;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: #334155;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: var(--card);
+            max-width: 820px;
+            width: 100%;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 1px solid var(--border);
+        }
+        h1 { margin-top: 0; font-size: 1.8rem; }
+        h3 { margin-top: 28px; margin-bottom: 14px; font-size: 1.15rem; }
+        .progress-bar {
+            width: 100%; height: 8px; background: var(--border);
+            border-radius: 4px; margin-bottom: 20px; overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%; background: var(--primary); width: 0%; transition: width 0.25s ease;
+        }
+        .question-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+        .question-img {
+            width: 68px;
+            height: 68px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            flex-shrink: 0;
+            background: #0f172a;
+        }
+        .question-text { font-size: 1.25rem; font-weight: 600; line-height: 1.4; }
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        button.option-btn {
+            padding: 12px 16px; font-size: 0.98rem; border: 1px solid var(--border);
+            border-radius: 10px; background: #0f172a; color: var(--text);
+            cursor: pointer; text-align: left; transition: all 0.15s; line-height: 1.4;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        button.option-btn:hover { border-color: var(--primary); background: #1e3a8a; }
+        button.option-btn.selected {
+            border-color: #60a5fa;
+            background: #172554;
+            box-shadow: inset 0 0 0 1px #60a5fa;
+        }
+        .option-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid #475569;
+            flex-shrink: 0;
+            background: #1e293b;
+        }
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 22px;
+        }
+        .btn-primary {
+            background: var(--primary); color: white; border: none; padding: 12px 22px;
+            border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer;
+            transition: background 0.15s;
+        }
+        .btn-primary:hover { background: var(--primary-hover); }
+        .btn-secondary {
+            background: var(--secondary); color: white; border: 1px solid #475569; padding: 11px 18px;
+            border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer;
+            transition: background 0.15s;
+        }
+        .btn-secondary:hover:not(:disabled) { background: var(--secondary-hover); }
+        .btn-secondary:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .hidden { display: none; }
+        .result-card {
+            background: #0f172a; padding: 25px; border-radius: 12px;
+            border-left: 5px solid var(--primary); margin-bottom: 25px;
+        }
+        .result-hero {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .hero-avatar {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            flex-shrink: 0;
+            background: #1e293b;
+        }
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 12px;
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--border);
+        }
+        .meta-box {
+            background: #1e293b;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .meta-thumb {
+            width: 46px;
+            height: 46px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 1px solid #475569;
+            flex-shrink: 0;
+            background: #0f172a;
+        }
+        .meta-thumb.round {
+            border-radius: 50%;
+        }
+        .meta-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 3px;
+        }
+        .meta-value {
+            font-size: 0.96rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .ranking-item {
+            background: #0f172a;
+            border: 1px solid #263349;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+        }
+        .ranking-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+        .ranking-name {
+            width: 175px;
+            flex-shrink: 0;
+            font-weight: 600;
+        }
+        .ranking-bar-bg {
+            flex-grow: 1;
+            height: 10px;
+            background: #334155;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .ranking-bar-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 5px;
+            transition: width 0.4s ease;
+        }
+        .ranking-pts {
+            width: 55px;
+            text-align: right;
+            color: var(--muted);
+            font-variant-numeric: tabular-nums;
+            flex-shrink: 0;
+        }
+        .ranking-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .badge-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 999px;
+            padding: 4px 12px 4px 5px;
+            font-size: 0.8rem;
+            color: var(--text);
+        }
+        .badge-chip img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #0f172a;
+        }
+        .badge-chip span.chip-role {
+            color: var(--muted);
+            font-size: 0.74rem;
+        }
+        .octagon-card {
+            background: #0f172a;
+            border: 1px solid #263349;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .octagon-legend {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-top: 8px;
+            text-align: center;
+        }
+        .axis-row { margin-bottom: 14px; }
+        .axis-labels { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 4px; color: var(--muted); }
+        .axis-bar-bg { width: 100%; height: 12px; background: #334155; border-radius: 6px; position: relative; overflow: hidden; }
+        .axis-bar-fill { height: 100%; background: #2563eb; transition: width 0.5s; }
+    </style>
 </head>
 <body>
-<div class="wrap">
-<header><div class="brand">IOP <span style="font-weight:400">/ INDICE DI ORIENTAMENTO POLITICO</span></div><div class="tag">DEMO · 4 DOMANDE</div></header>
-<main>
-<section id="welcome">
- <div class="eyebrow">Una prova interattiva</div>
- <h1>Scopri il tuo orientamento politico.</h1>
- <p>Otto dimensioni politiche, una serie di domande e un profilo finale tutto da scoprire. Questa versione dimostrativa contiene quattro domande dell'asse Economia.</p>
- <div class="rule"></div>
- <label class="small" for="participant">Nome (facoltativo)</label>
- <input id="participant" class="name" maxlength="40" placeholder="Come ti chiami?">
- <div class="meta"><span>◷ Circa 2 minuti</span><span>·</span><span>4 domande</span><span>·</span><span>Risultati dimostrativi</span></div>
- <button class="primary" id="start">Inizia il test <span aria-hidden="true">→</span></button>
-</section>
-<section id="quiz" class="hidden">
- <div class="qtop"><span>IOP · ECONOMIA</span><span id="counter">DOMANDA 1 / 4</span></div>
- <div class="progressline"><div class="progress" id="progress"></div></div>
- <div class="eyebrow" id="qnum">DOMANDA 01</div>
- <h2 id="question"></h2>
- <div class="options" id="options"></div>
- <div class="nav"><button class="secondary" id="back">← Indietro</button><button class="primary" id="next" disabled>Continua →</button></div>
-</section>
-<section id="results" class="hidden">
- <div class="eyebrow">Test completato</div>
- <h1 id="resultTitle">Il tuo risultato</h1>
- <p>Questo è il tuo risultato dimostrativo sull'asse Economia, calcolato sulla base delle quattro risposte selezionate.</p>
- <div class="resultbox">
-  <div class="eyebrow">Orientamento economico</div>
-  <div class="score" id="score">— / 100</div>
-  <div class="axislabels"><span>Socialismo</span><span>Centro</span><span>Capitalismo</span></div>
-  <div class="axisbar"><div class="axisfill" id="axisfill"></div></div>
-  <p class="small" style="margin:12px 0 0">0 = Socialismo · 50 = Centro · 100 = Capitalismo</p>
- </div>
- <div class="resultbox">
-  <div class="eyebrow">Ideologie associate alle tue risposte</div>
-  <div id="ideologies"></div>
-  <p class="small" style="margin:15px 0 0">Il conteggio è separato dal punteggio numerico. Le ideologie a pari punteggio massimo sono considerate prevalenti.</p>
- </div>
- <div class="eyebrow">Le tue risposte</div>
- <div id="review"></div>
- <div class="rule"></div>
- <p>Nel test definitivo saranno presenti tutti gli otto assi, le ideologie prevalenti, il partito italiano, il personaggio di riferimento, lo Stato simbolico e un'analisi personalizzata.</p>
- <button class="primary" id="restart">↻ Ripeti la demo</button>
-</section>
-</main>
-<footer>IOP · DEMO INTERATTIVA · VERSIONE DI PROVA</footer>
+
+<div class="container">
+    <div id="start-screen">
+        <h1>Test di Orientamento Politico</h1>
+        <p style="color: var(--muted); line-height: 1.6;">
+            Rispondi alle domande per calcolare il tuo posizionamento politico e scoprire le ideologie più affini alle tue risposte.
+        </p>
+        <div class="btn-group">
+            <button class="btn-primary" onclick="startQuiz('full')">Test Completo (Tutte le domande)</button>
+            <button class="btn-secondary" onclick="startQuiz('quick', 15)">Modalità Rapida (15 domande)</button>
+        </div>
+    </div>
+
+    <div id="resume-box" class="hidden" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+            <button class="btn-primary" style="background: #10b981;" onclick="resumeQuiz()">
+                ▶ Riprendi test in corso (<span id="resume-info"></span>)
+            </button>
+        </div>
+    </div>
+
+    <div id="quiz-screen" class="hidden">
+        <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+        <div id="counter" style="font-size: 0.85rem; color: var(--muted); margin-bottom: 8px;"></div>
+        <div class="question-header">
+            <img id="question-img" class="question-img" src="" alt="" style="display:none" onerror="this.style.display='none'">
+            <div class="question-text" id="question-text"></div>
+        </div>
+        <div class="options" id="options-container"></div>
+        <div class="nav-bar">
+            <button id="back-btn" class="btn-secondary" onclick="goBack()">← Indietro</button>
+            <span id="hint-text" style="font-size: 0.82rem; color: var(--muted);">Seleziona un'opzione per avanzare</span>
+        </div>
+    </div>
+
+    <div id="result-screen" class="hidden">
+        <h1>Il tuo Profilo Politico</h1>
+        <div class="result-card">
+            <div class="result-hero">
+                <img id="top-character-img" class="hero-avatar" src="" alt="" onerror="this.style.display='none'">
+                <div>
+                    <div style="font-size: 0.85rem; color: var(--muted); text-transform: uppercase;">Ideologia più affine</div>
+                    <div id="top-ideology" style="font-size: 1.8rem; font-weight: 700; color: #60a5fa; margin: 6px 0;"></div>
+                    <div id="second-ideology" style="font-size: 0.95rem; color: var(--muted);"></div>
+                </div>
+            </div>
+
+            <div class="meta-grid">
+                <div class="meta-box">
+                    <img id="top-party-img" class="meta-thumb" src="" alt="" onerror="this.style.display='none'">
+                    <div>
+                        <div class="meta-label">Partito Politico</div>
+                        <div id="top-party" class="meta-value">-</div>
+                    </div>
+                </div>
+                <div class="meta-box">
+                    <img id="top-nation-img" class="meta-thumb" src="" alt="" onerror="this.style.display='none'">
+                    <div>
+                        <div class="meta-label">Nazione Affine</div>
+                        <div id="top-nation" class="meta-value">-</div>
+                    </div>
+                </div>
+                <div class="meta-box">
+                    <img id="top-character-thumb" class="meta-thumb round" src="" alt="" onerror="this.style.display='none'">
+                    <div>
+                        <div class="meta-label">Personaggio</div>
+                        <div id="top-character" class="meta-value">-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Classifica Completa delle Ideologie</h3>
+        <div id="ranking-container"></div>
+
+        <h3>Dettaglio sugli 8 Assi (0 - 100)</h3>
+        <div id="axes-container"></div>
+
+        <h3>Ottagono degli 8 Assi</h3>
+        <div class="octagon-card">
+            <div id="octagon-container" style="width: 100%; max-width: 520px;"></div>
+            <div class="octagon-legend">
+                Punta esterna = <strong>0</strong> &nbsp;·&nbsp; Anello intermedio = <strong>50</strong> &nbsp;·&nbsp; Centro = <strong>100</strong>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn-secondary" onclick="startQuiz('quick', 15)">Ripeti test (Modalità rapida)</button>
+            <button class="btn-primary" onclick="startQuiz('full')">Ripeti test completo</button>
+        </div>
+    </div>
 </div>
+
+<!-- Carica il file con tutte le domande -->
+<script src="questions.js"></script>
 <script>
-const questions=[
- {q:"Il mercato dovrebbe essere lasciato il più possibile libero di autoregolarsi, limitando l'intervento dello Stato?",a:[
-  ["Assolutamente sì. Più libero il mercato, più libere le persone.",100,["Destra"]],
-  ["In linea di massima, sì. Lo Stato dovrebbe intervenire solo per far rispettare le regole (concorrenza, monopoli).",80,["Centro-destra"]],
-  ["Dipende dal settore. Mercato e Stato dovrebbero intervenire ciascuno dove risulta più efficace.",50,["Centro"]],
-  ["Non molto. Lo Stato dovrebbe regolamentare attivamente il mercato per tutelare i lavoratori, i consumatori e l’interesse collettivo.",25,["Sinistra","Centro-sinistra"]],
-  ["Assolutamente no. L’economia dovrebbe essere guidata principalmente da obiettivi sociali e collettivi, anche attraverso un forte controllo pubblico della produzione.",5,["Estrema sinistra"]]
- ]},
- {q:"Le concessioni balneari dovrebbero avere una durata limitata nel tempo?",a:[
-  ["Sì, le concessioni dovrebbero durare pochi anni ed essere periodicamente riassegnate tramite gare pubbliche.",10,["Estrema sinistra","Sinistra"]],
-  ["Sì, ma dovrebbero avere una durata sufficientemente lunga da permettere agli imprenditori di recuperare gli investimenti.",30,["Centro-sinistra"]],
-  ["No, le concessioni dovrebbero poter essere rinnovate automaticamente se il concessionario rispetta le condizioni stabilite.",65,["Centro","Centro-destra"]],
-  ["No, chi ha investito nella propria attività dovrebbe poter mantenere la concessione senza limiti temporali rigidi.",90,["Destra","Estrema destra"]]
- ]},
- {q:"L'abitazione dovrebbe essere considerata un diritto fondamentale garantito dallo Stato?",a:[
-  ["Sì, nessuno dovrebbe possedere dieci appartamenti mentre delle famiglie dormono in auto. Lo Stato dovrebbe limitare il numero di immobili che una singola persona o società può possedere.",5,["Estrema sinistra"]],
-  ["Sì, ma lo Stato dovrebbe intervenire soprattutto per aiutare le famiglie in difficoltà ad accedere al mercato immobiliare.",20,["Sinistra","Centro-sinistra"]],
-  ["Sì, ma il modo migliore per garantire questo diritto è favorire la costruzione di nuove abitazioni e aumentare l'offerta.",50,["Centro"]],
-  ["No, l’abitazione è un bene importante, ma non un diritto che lo Stato deve garantire a tutti.",65,["Centro-destra"]],
-  ["No, la casa è una proprietà privata e il suo acquisto o affitto deve dipendere principalmente dalle possibilità economiche individuali.",95,["Destra","Estrema destra"]]
- ]},
- {q:"L'acqua potabile dovrebbe essere considerata un bene pubblico essenziale, sottratto il più possibile alle logiche del mercato e del profitto?",a:[
-  ["Sì, ormai anche l’acqua potabile è un prodotto di consumo imbottigliato ed etichettato (capitalismo brutto). Dovrebbe essere sempre gratuita.",5,["Estrema sinistra"]],
-  ["Sì, la gestione dovrebbe rimanere pubblica, con tariffe accessibili e senza finalità di profitto.",20,["Sinistra","Centro-sinistra"]],
-  ["La proprietà e il controllo delle risorse idriche dovrebbero essere pubblici, ma la gestione dei servizi potrebbe essere affidata anche a imprese private.",55,["Centro","Centro-destra"]],
-  ["No, anche l'acqua dovrebbe poter essere gestita da imprese private secondo normali criteri di mercato, sotto la supervisione dello Stato.",95,["Destra","Estrema destra"]]
- ]}
-];
-let current=0,answers=[null,null,null,null];
-const $=id=>document.getElementById(id);
-function show(id){["welcome","quiz","results"].forEach(s=>$(s).classList.toggle("hidden",s!==id))}
-function renderQuestion(){
- const q=questions[current];$("counter").textContent=`DOMANDA ${current+1} / ${questions.length}`;
- $("qnum").textContent=`DOMANDA ${String(current+1).padStart(2,"0")}`;$("question").textContent=q.q;
- $("progress").style.width=`${(current+1)/questions.length*100}%`;
- $("options").innerHTML="";
- q.a.forEach((a,i)=>{const label=document.createElement("label");label.className="option"+(answers[current]===i?" selected":"");
- const radio=document.createElement("input");radio.type="radio";radio.name="answer";radio.value=i;radio.checked=answers[current]===i;
- const span=document.createElement("span");span.textContent=a[0];label.append(radio,span);
- label.addEventListener("click",()=>{answers[current]=i;renderQuestion()});$("options").append(label)});
- $("back").style.visibility=current===0?"hidden":"visible";$("next").textContent=current===questions.length-1?"Concludi":"Continua →";$("next").disabled=answers[current]===null;
+    const ideologyProfiles = {
+        "Estrema sinistra": {
+            party: "Potere al Popolo",
+            partyImage: "images/partito-potere-al-popolo.png",
+            nation: "Cina comunista",
+            nationImage: "images/nazione-cina-comunista.png",
+            character: "Che Guevara",
+            image: "images/che-guevara.jpg"
+        },
+        "Sinistra": {
+            party: "Alleanza Verdi e Sinistra",
+            partyImage: "images/partito-avs.png",
+            nation: "Cile di Salvador Allende",
+            nationImage: "images/nazione-cile-allende.png",
+            character: "Robin Hood",
+            image: "images/robin-hood.jpg"
+        },
+        "Centro sinistra": {
+            party: "Partito Democratico",
+            partyImage: "images/partito-pd.png",
+            nation: "Danimarca",
+            nationImage: "images/nazione-danimarca.png",
+            character: 'Elly "Elena" Schlein',
+            image: "images/elly-elena.jpg"
+        },
+        "Centro": {
+            party: "Italia Viva",
+            partyImage: "images/partito-italia-viva.png",
+            nation: "Svizzera",
+            nationImage: "images/nazione-svizzera.png",
+            character: "Don Camillo",
+            image: "images/don-camillo.jpg"
+        },
+        "Centro destra": {
+            party: "Forza Italia",
+            partyImage: "images/partito-forza-italia.png",
+            nation: "Italia del Dopoguerra",
+            nationImage: "images/nazione-italia-dopoguerra.png",
+            character: "Ned Flanders",
+            image: "images/ned-flanders.jpg"
+        },
+        "Destra regionalista": {
+            party: "Lega",
+            partyImage: "images/partito-lega.png",
+            nation: "Veneto Stato",
+            nationImage: "images/nazione-veneto.png",
+            character: "Umberto Bossi",
+            image: "images/umberto-bossi.jpg"
+        },
+        "Destra nazionalista": {
+            party: "Fratelli d'Italia",
+            partyImage: "images/partito-fdi.png",
+            nation: "Italia attuale",
+            nationImage: "images/nazione-italia.png",
+            character: "Viktor Orbán",
+            image: "images/viktor-orban.jpg"
+        },
+        "Estrema destra": {
+            party: "Futuro Nazionale",
+            partyImage: "images/partito-futuro-nazionale.png",
+            nation: "Italia fascista",
+            nationImage: "images/nazione-italia-fascista.png",
+            character: "Generale Vannacci",
+            image: "images/generale-vannacci.jpg"
+        }
+    };
+
+    const entityImages = [
+        // Il Signore degli Anelli
+        { keywords: ["aragorn"], image: "images/lotr-aragorn.jpg" },
+        { keywords: ["gandalf"], image: "images/lotr-gandalf.jpg" },
+        { keywords: ["frodo"], image: "images/lotr-frodo.jpg" },
+        { keywords: ["samwise", "samvise", "sam gamgee", "sam "], image: "images/lotr-sam.jpg" },
+        { keywords: ["saruman"], image: "images/lotr-saruman.jpg" },
+        { keywords: ["faramir"], image: "images/lotr-faramir.jpg" },
+        { keywords: ["theoden", "théoden"], image: "images/lotr-theoden.jpg" },
+        { keywords: ["bilbo"], image: "images/lotr-bilbo.jpg" },
+
+        // Personaggi "A cena con..." / Politici / Storici
+        { keywords: ["elena"], image: "images/cena-schlein.jpg" },
+        { keywords: ["il capitano"], image: "images/cena-capitano.jpg" },
+        { keywords: ["kraken"], image: "images/cena-kraken.jpg" },
+        { keywords: ["generale"], image: "images/generale-vannacci.jpg" },
+        { keywords: ["gentilezza"], image: "images/cena-gentilezza.jpg" },
+        { keywords: ["zecca"], image: "images/cena-comunista.jpg" },
+        { keywords: ["tajans"], image: "images/cena-tajans.jpg" },
+
+        // Italiani
+        { keywords: ["Abubakar"], image: "images/nero-italiano.jpg" },
+        { keywords: ["Hassan"], image: "images/paki.jpg" },
+        { keywords: ["Giulio"], image: "images/italiano.jpg" },
+        { keywords: ["Vincenzo"], image: "images/stereotipo-ita.jpg" },
+        { keywords: ["Gianni"], image: "images/ricco-ita.jpg" },
+        { keywords: ["Franco"], image: "images/caramba.jpg" }
+    ];
+
+    function findEntityImage(text, explicitImage) {
+        if (explicitImage) return explicitImage;
+        if (!text) return null;
+        const lower = ` ${text.toLowerCase()} `;
+        for (const entry of entityImages) {
+            for (const kw of entry.keywords) {
+                if (lower.includes(kw.toLowerCase())) {
+                    return entry.image;
+                }
+            }
+        }
+        return null;
+    }
+
+    const ALL_IDEOLOGIES = Object.keys(ideologyProfiles);
+
+    const AXES_ORDER = [
+        "Economia",
+        "Società",
+        "Autorità",
+        "Identità",
+        "Politica Estera",
+        "Ambiente",
+        "Religione",
+        "Giustizia"
+    ];
+
+    const axisDescriptions = {
+        Economia: ["Socialismo", "Capitalismo"],
+        Società: ["Progressismo", "Tradizionalismo"],
+        Autorità: ["Libertarismo", "Autoritarismo"],
+        Identità: ["Internazionalismo", "Nazionalismo"],
+        "Politica Estera": ["Pacifismo", "Interventismo"],
+        Ambiente: ["Ecologismo", "Produttivismo"],
+        Religione: ["Laicismo", "Confessionalismo"],
+        Giustizia: ["Riabilitazione", "Punitivo"]
+    };
+
+    function normalizeAxisKey(rawKey) {
+        const k = rawKey.trim().toLowerCase();
+        if (k === "eco" || k === "economia") return "Economia";
+        if (k === "società" || k === "societa" || k === "sociale") return "Società";
+        if (k === "autorità" || k === "autorita") return "Autorità";
+        if (k === "identità" || k === "identita") return "Identità";
+        if (k === "pe" || k === "politica estera" || k === "politica_estera") return "Politica Estera";
+        if (k === "ambiente") return "Ambiente";
+        if (k === "religione") return "Religione";
+        if (k === "giustizia") return "Giustizia";
+        return null;
+    }
+
+    function addIdeologyScore(ideologyPoints, rawIdeology) {
+        const key = rawIdeology.trim().toLowerCase();
+        if (!key || key === "nessuno" || key === "nessuna") return;
+
+        if (key === "destra") {
+            ideologyPoints["Destra regionalista"] = (ideologyPoints["Destra regionalista"] || 0) + 1;
+            ideologyPoints["Destra nazionalista"] = (ideologyPoints["Destra nazionalista"] || 0) + 1;
+            return;
+        }
+
+        const matched = ALL_IDEOLOGIES.find(i => i.toLowerCase() === key);
+        if (matched) {
+            ideologyPoints[matched] = (ideologyPoints[matched] || 0) + 1;
+        }
+    }
+
+    let activeQuestions = [];
+    let userAnswers = [];
+    let currentIdx = 0;
+
+    function shuffleArray(arr) {
+        const copy = arr.slice();
+        for (let i = copy.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy;
+    }
+
+    const PROGRESS_STORAGE_KEY = "quiz_in_progress_v1";
+
+function saveQuizProgress() {
+    const state = {
+        activeQuestions,
+        userAnswers,
+        currentIdx
+    };
+    localStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(state));
 }
-function finish(){
- const avg=Math.round(answers.reduce((s,idx,i)=>s+questions[i].a[idx][1],0)/questions.length);
- $("score").textContent=`${avg} / 100`;$("axisfill").style.width=avg+"%";
- const name=$("participant").value.trim();$("resultTitle").textContent="Il tuo risultato"+(name?", "+name:"")+"!";
- const counts={};answers.forEach((idx,i)=>questions[i].a[idx][2].forEach(tag=>counts[tag]=(counts[tag]||0)+1));
- const sorted=Object.entries(counts).sort((a,b)=>b[1]-a[1]);const max=sorted[0]?.[1]||0;
- $("ideologies").innerHTML="";
- sorted.forEach(([name,n])=>{const row=document.createElement("div");row.className="rank";const left=document.createElement("span");left.textContent=name+(n===max?" · prevalente":"");const right=document.createElement("strong");right.textContent=`${n} ${n===1?"punto":"punti"}`;row.append(left,right);$("ideologies").append(row);const bar=document.createElement("div");bar.className="rankbar";const fill=document.createElement("span");fill.style.width=(n/max*100)+"%";bar.append(fill);$("ideologies").append(bar)});
- $("review").innerHTML="";answers.forEach((idx,i)=>{const div=document.createElement("div");div.className="answerreview";const strong=document.createElement("strong");strong.textContent=`DOMANDA ${i+1}`;const p=document.createElement("p");p.style.margin="0";p.textContent=questions[i].a[idx][0];div.append(strong,p);$("review").append(div)});
- show("results");
+
+function clearQuizProgress() {
+    localStorage.removeItem(PROGRESS_STORAGE_KEY);
+    checkSavedProgress();
 }
-$("start").addEventListener("click",()=>{current=0;show("quiz");renderQuestion()});
-$("back").addEventListener("click",()=>{if(current>0){current--;renderQuestion()}});
-$("next").addEventListener("click",()=>{if(answers[current]===null)return;if(current<questions.length-1){current++;renderQuestion()}else finish()});
-$("restart").addEventListener("click",()=>{current=0;answers=[null,null,null,null];show("welcome")});
+
+function checkSavedProgress() {
+    const resumeBox = document.getElementById('resume-box');
+    const resumeInfo = document.getElementById('resume-info');
+    try {
+        const raw = localStorage.getItem(PROGRESS_STORAGE_KEY);
+        if (!raw) {
+            resumeBox.classList.add('hidden');
+            return;
+        }
+        const state = JSON.parse(raw);
+        if (state && Array.isArray(state.activeQuestions) && state.activeQuestions.length > 0) {
+            resumeInfo.innerText = `Domanda ${state.currentIdx + 1} di ${state.activeQuestions.length}`;
+            resumeBox.classList.remove('hidden');
+        } else {
+            resumeBox.classList.add('hidden');
+        }
+    } catch (e) {
+        resumeBox.classList.add('hidden');
+    }
+}
+
+function resumeQuiz() {
+    try {
+        const state = JSON.parse(localStorage.getItem(PROGRESS_STORAGE_KEY));
+        if (!state) return;
+        activeQuestions = state.activeQuestions;
+        userAnswers = state.userAnswers;
+        currentIdx = state.currentIdx;
+
+        document.getElementById('start-screen').classList.add('hidden');
+        document.getElementById('result-screen').classList.add('hidden');
+        document.getElementById('quiz-screen').classList.remove('hidden');
+        renderQuestion();
+    } catch (e) {
+        clearQuizProgress();
+    }
+}
+
+// Controlla subito all'apertura della pagina se c'è una partita salvata
+window.addEventListener('DOMContentLoaded', checkSavedProgress);
+    
+    function startQuiz(mode, quickCount = 15) {
+        clearQuizProgress();
+        currentIdx = 0;
+        const shuffledAll = shuffleArray(quizData);
+        const selectedRaw = mode === 'quick'
+            ? shuffledAll.slice(0, Math.min(quickCount, shuffledAll.length))
+            : shuffledAll;
+
+        activeQuestions = selectedRaw.map(q => ({
+            question: q.question,
+            image: q.image || null,
+            options: shuffleArray(q.options)
+        }));
+        userAnswers = new Array(activeQuestions.length).fill(null);
+
+        document.getElementById('start-screen').classList.add('hidden');
+        document.getElementById('result-screen').classList.add('hidden');
+        document.getElementById('quiz-screen').classList.remove('hidden');
+        renderQuestion();
+    }
+
+    function selectOption(opt) {
+    userAnswers[currentIdx] = opt;
+
+    if (currentIdx < activeQuestions.length - 1) {
+        currentIdx++;
+        saveQuizProgress();
+        renderQuestion();
+    } else {
+        document.getElementById('progress').style.width = '100%';
+        clearQuizProgress();
+        showResults();
+    }
+}
+
+function goBack() {
+    if (currentIdx > 0) {
+        currentIdx--;
+        saveQuizProgress();
+        renderQuestion();
+    }
+}
+    
+    function renderQuestion() {
+        const q = activeQuestions[currentIdx];
+        const savedOpt = userAnswers[currentIdx];
+
+        document.getElementById('counter').innerText = `Domanda ${currentIdx + 1} di ${activeQuestions.length}`;
+        document.getElementById('question-text').innerText = q.question;
+        document.getElementById('progress').style.width = `${(currentIdx / activeQuestions.length) * 100}%`;
+        document.getElementById('back-btn').disabled = currentIdx === 0;
+
+        const qImgEl = document.getElementById('question-img');
+        const qImgSrc = findEntityImage(q.question, q.image);
+        if (qImgSrc) {
+            qImgEl.src = qImgSrc;
+            qImgEl.style.display = 'block';
+        } else {
+            qImgEl.style.display = 'none';
+        }
+
+        const container = document.getElementById('options-container');
+        container.innerHTML = '';
+
+        q.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            if (savedOpt && savedOpt.text === opt.text) {
+                btn.classList.add('selected');
+            }
+
+            const optImgSrc = findEntityImage(opt.text, opt.image);
+            if (optImgSrc) {
+                const img = document.createElement('img');
+                img.className = 'option-avatar';
+                img.src = optImgSrc;
+                img.alt = '';
+                img.onerror = function() { this.style.display = 'none'; };
+                btn.appendChild(img);
+            }
+
+            const span = document.createElement('span');
+            span.innerText = opt.text;
+            btn.appendChild(span);
+
+            btn.onclick = () => selectOption(opt);
+            container.appendChild(btn);
+        });
+    }
+
+    function selectOption(opt) {
+        userAnswers[currentIdx] = opt;
+
+        if (currentIdx < activeQuestions.length - 1) {
+            currentIdx++;
+            renderQuestion();
+        } else {
+            document.getElementById('progress').style.width = '100%';
+            showResults();
+        }
+    }
+
+    function goBack() {
+        if (currentIdx > 0) {
+            currentIdx--;
+            renderQuestion();
+        }
+    }
+
+    function computeScores() {
+        const axisTotals = {};
+        const axisCounts = {};
+        AXES_ORDER.forEach(ax => {
+            axisTotals[ax] = 0;
+            axisCounts[ax] = 0;
+        });
+
+        const ideologyPoints = {};
+        ALL_IDEOLOGIES.forEach(ideo => {
+            ideologyPoints[ideo] = 0;
+        });
+
+        userAnswers.forEach(opt => {
+            if (!opt) return;
+            if (opt.axes) {
+                for (const [rawAxis, val] of Object.entries(opt.axes)) {
+                    const axis = normalizeAxisKey(rawAxis);
+                    if (axis && typeof val === "number" && !Number.isNaN(val)) {
+                        axisTotals[axis] += val;
+                        axisCounts[axis] += 1;
+                    }
+                }
+            }
+            if (opt.ideologies) {
+                opt.ideologies.forEach(ideo => {
+                    addIdeologyScore(ideologyPoints, ideo);
+                });
+            }
+        });
+
+        return { axisTotals, axisCounts, ideologyPoints };
+    }
+
+    function setImg(elId, src, altText) {
+        const el = document.getElementById(elId);
+        if (!el) return;
+        if (src) {
+            el.src = src;
+            el.alt = altText || '';
+            el.style.display = 'block';
+        } else {
+            el.style.display = 'none';
+        }
+    }
+
+    function renderOctagonChart(axisAverages) {
+        const container = document.getElementById('octagon-container');
+        if (!container) return;
+
+        const size = 500;
+        const cx = size / 2;
+        const cy = size / 2;
+        const maxRadius = 155;
+        const labelRadius = maxRadius + 32;
+        const numAxes = AXES_ORDER.length;
+
+        const getPoint = (idx, radius) => {
+            const angle = -Math.PI / 2 + (idx * 2 * Math.PI) / numAxes;
+            return {
+                x: cx + radius * Math.cos(angle),
+                y: cy + radius * Math.sin(angle),
+                angle
+            };
+        };
+
+        // Ottagoni concentrici di guida (punta = 0, centro = 100)
+        const levels = [0, 25, 50, 75];
+        let gridSvg = '';
+        levels.forEach(lvl => {
+            const r = maxRadius * ((100 - lvl) / 100);
+            const pts = AXES_ORDER.map((_, i) => {
+                const p = getPoint(i, r);
+                return `${p.x.toFixed(1)},${p.y.toFixed(1)}`;
+            }).join(' ');
+            const isOuter = lvl === 0;
+            const isMid = lvl === 50;
+            gridSvg += `<polygon points="${pts}" fill="none" stroke="${isOuter ? '#475569' : '#334155'}" stroke-width="${isOuter ? 2 : 1}" ${isMid ? 'stroke-dasharray="4 4"' : ''} />`;
+        });
+
+        // Raggi dal centro alle 8 punte + etichette
+        let spokesSvg = '';
+        let labelsSvg = '';
+        const valuePoints = [];
+        let dotsSvg = '';
+
+        AXES_ORDER.forEach((axis, i) => {
+            const val = Math.max(0, Math.min(100, axisAverages[axis]));
+            const outerP = getPoint(i, maxRadius);
+            spokesSvg += `<line x1="${cx}" y1="${cy}" x2="${outerP.x.toFixed(1)}" y2="${outerP.y.toFixed(1)}" stroke="#334155" stroke-width="1" />`;
+
+            // Punta = 0 (raggio maxRadius), Centro = 100 (raggio 0)
+            const rVal = maxRadius * ((100 - val) / 100);
+            const valP = getPoint(i, rVal);
+            valuePoints.push(`${valP.x.toFixed(1)},${valP.y.toFixed(1)}`);
+
+            dotsSvg += `<circle cx="${valP.x.toFixed(1)}" cy="${valP.y.toFixed(1)}" r="5" fill="#60a5fa" stroke="#0f172a" stroke-width="1.5" />`;
+
+            const lblP = getPoint(i, labelRadius);
+            const cos = Math.cos(lblP.angle);
+            const sin = Math.sin(lblP.angle);
+            let anchor = 'middle';
+            if (cos > 0.25) anchor = 'start';
+            else if (cos < -0.25) anchor = 'end';
+
+            const yOffset = sin > 0.5 ? 12 : (sin < -0.5 ? -6 : 4);
+            labelsSvg += `
+                <text x="${lblP.x.toFixed(1)}" y="${(lblP.y + yOffset).toFixed(1)}"
+                      text-anchor="${anchor}" fill="#f8fafc" font-size="12" font-weight="600">
+                    ${axis}
+                    <tspan x="${lblP.x.toFixed(1)}" dy="14" fill="#60a5fa" font-size="11" font-weight="700">${val}</tspan>
+                </text>
+            `;
+        });
+
+        container.innerHTML = `
+            <svg viewBox="0 0 ${size} ${size}" width="100%" height="auto" style="overflow: visible;">
+                ${gridSvg}
+                ${spokesSvg}
+                <polygon points="${valuePoints.join(' ')}"
+                         fill="rgba(37, 99, 235, 0.32)"
+                         stroke="#60a5fa"
+                         stroke-width="2.5"
+                         stroke-linejoin="round" />
+                ${dotsSvg}
+                <circle cx="${cx}" cy="${cy}" r="3.5" fill="#94a3b8" />
+                <text x="${cx + 7}" y="${cy + 4}" fill="#94a3b8" font-size="10">100</text>
+                ${labelsSvg}
+            </svg>
+        `;
+    }
+
+    function showResults() {
+        document.getElementById('quiz-screen').classList.add('hidden');
+        document.getElementById('result-screen').classList.remove('hidden');
+
+        const { axisTotals, axisCounts, ideologyPoints } = computeScores();
+        const sortedIdeologies = Object.entries(ideologyPoints).sort((a, b) => b[1] - a[1]);
+        const maxPts = sortedIdeologies[0] ? sortedIdeologies[0][1] : 0;
+
+        const topIdeoName = sortedIdeologies[0] ? sortedIdeologies[0][0] : null;
+        const topProfile = topIdeoName ? ideologyProfiles[topIdeoName] : null;
+
+        document.getElementById('top-ideology').innerText =
+            maxPts > 0 && topIdeoName ? `${topIdeoName} (${maxPts} pt)` : "Non determinata";
+
+        if (sortedIdeologies[1] && sortedIdeologies[1][1] > 0) {
+            document.getElementById('second-ideology').innerText =
+                `Seconda affinità: ${sortedIdeologies[1][0]} (${sortedIdeologies[1][1]} pt)`;
+        } else {
+            document.getElementById('second-ideology').innerText = "";
+        }
+
+        if (maxPts > 0 && topProfile) {
+            setImg('top-character-img', topProfile.image, topProfile.character);
+            setImg('top-party-img', topProfile.partyImage, topProfile.party);
+            setImg('top-nation-img', topProfile.nationImage, topProfile.nation);
+            setImg('top-character-thumb', topProfile.image, topProfile.character);
+
+            document.getElementById('top-party').innerText = topProfile.party;
+            document.getElementById('top-nation').innerText = topProfile.nation;
+            document.getElementById('top-character').innerText = topProfile.character;
+        } else {
+            setImg('top-character-img', null);
+            setImg('top-party-img', null);
+            setImg('top-nation-img', null);
+            setImg('top-character-thumb', null);
+
+            document.getElementById('top-party').innerText = "-";
+            document.getElementById('top-nation').innerText = "-";
+            document.getElementById('top-character').innerText = "-";
+        }
+
+        const rankingContainer = document.getElementById('ranking-container');
+        rankingContainer.innerHTML = '';
+        sortedIdeologies.forEach(([ideo, pts]) => {
+            const pct = maxPts > 0 ? Math.round((pts / maxPts) * 100) : 0;
+            const prof = ideologyProfiles[ideo] || {};
+
+            rankingContainer.innerHTML += `
+                <div class="ranking-item">
+                    <div class="ranking-header">
+                        <div class="ranking-name">${ideo}</div>
+                        <div class="ranking-bar-bg">
+                            <div class="ranking-bar-fill" style="width: ${pct}%"></div>
+                        </div>
+                        <div class="ranking-pts">${pts} pt</div>
+                    </div>
+                    <div class="ranking-badges">
+                        <div class="badge-chip">
+                            <img src="${prof.partyImage || ''}" alt="" onerror="this.style.display='none'">
+                            <span class="chip-role">Partito:</span> <strong>${prof.party || '-'}</strong>
+                        </div>
+                        <div class="badge-chip">
+                            <img src="${prof.nationImage || ''}" alt="" onerror="this.style.display='none'">
+                            <span class="chip-role">Nazione:</span> <strong>${prof.nation || '-'}</strong>
+                        </div>
+                        <div class="badge-chip">
+                            <img src="${prof.image || ''}" alt="" onerror="this.style.display='none'">
+                            <span class="chip-role">Personaggio:</span> <strong>${prof.character || '-'}</strong>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        const axisAverages = {};
+        const axesContainer = document.getElementById('axes-container');
+        axesContainer.innerHTML = '';
+        AXES_ORDER.forEach(axis => {
+            const total = axisTotals[axis];
+            const count = axisCounts[axis];
+            const avg = count > 0 ? Math.round(total / count) : 50;
+            axisAverages[axis] = avg;
+
+            const [leftLabel, rightLabel] = axisDescriptions[axis];
+            axesContainer.innerHTML += `
+                <div class="axis-row">
+                    <div class="axis-labels">
+                        <span>${leftLabel} (${100 - avg}%)</span>
+                        <strong>${axis}</strong>
+                        <span>(${avg}%) ${rightLabel}</span>
+                    </div>
+                    <div class="axis-bar-bg">
+                        <div class="axis-bar-fill" style="width: ${avg}%"></div>
+                    </div>
+                </div>
+            `;
+        });
+
+        renderOctagonChart(axisAverages);
+    }
 </script>
 </body>
 </html>
